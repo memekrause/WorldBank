@@ -5,7 +5,6 @@ CONTEXTO Cada año, el Banco Mundial tiene dos programas de ayuda para los cuale
 ANALISIS DE BASE DE DATOS Esta trabajo analiza la base de datos del Banco Mundial, bigquery-public-data.world_bank_health_population, que contiene muchos indicadores de todos los paises a lo largo de los años.
 Haciendo un primer acercamiento a la base de datos, me di cuenta que habian muchos datos nulos. Es decir, muchos indicadores que no fueron respondidos por muchos paises o en muchos años. Entonces el primer paso que hice fue analizar en promedio cuales fueron los indicadores que tenían más respuestas a lo largo de los años, contando los países que habían respondido. 
 
-
 WITH yearly_responses AS (
   SELECT
       indicator_name,
@@ -33,4 +32,4 @@ FROM
     average_responses
 ORDER BY 
     avg_yearly_responses DESC
-LIMIT 50;![image](https://github.com/user-attachments/assets/9fd95b5c-ae43-4332-bb6e-792e8c52a41d)
+LIMIT 200
