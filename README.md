@@ -32,6 +32,6 @@ FROM
     average_responses
 ORDER BY 
     avg_yearly_responses DESC
-LIMIT 50;![image](https://github.com/user-attachments/assets/b68cc003-cf6a-4790-a63c-27fdb7e565f5)
+LIMIT 200;![image](https://github.com/user-attachments/assets/b68cc003-cf6a-4790-a63c-27fdb7e565f5)
 
 
