@@ -4,6 +4,8 @@
 
 **ANALISIS DE BASE DE DATOS** Esta trabajo analiza la base de datos del Banco Mundial, bigquery-public-data.world_bank_health_population, que contiene muchos indicadores de todos los paises a lo largo de los años 1990-2019.
 
+**PLAN DE METRICAS**
+
 Haciendo un primer acercamiento a la base de datos, me di cuenta que habian muchos datos nulos. Es decir, muchos indicadores que no fueron respondidos por muchos paises o en muchos años. Entonces el primer paso que hice fue analizar en promedio cuales fueron los indicadores que tenían más respuestas a lo largo de los años, contando los países que habían respondido. Agrupe los datos por indicator_name y year para contar cuántas respuestas no nulas hay para cada combinación de indicador y año; y luego, conte cuántos valores no nulos existen para cada indicator_name en cada año. Despues, calcule el promedio de respuestas anuales (yearly_response) para cada indicador. 
 
 WITH yearly_responses AS (
