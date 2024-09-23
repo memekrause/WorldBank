@@ -3,7 +3,8 @@
 CONTEXTO Cada año, el Banco Mundial tiene dos programas de ayuda para los cuales tiene que elegir dos píses beneificiarios. En 2024, estos programas se enfocaron en la desigualdad de genero. En particular, hay dos temas de relevancia en los cuales se quiere invertir: la participación de la mujer en el mercado laboral y la reducción de los embarazos adolescentes. 
 
 ANALISIS DE BASE DE DATOS Esta trabajo analiza la base de datos del Banco Mundial, bigquery-public-data.world_bank_health_population, que contiene muchos indicadores de todos los paises a lo largo de los años.
-Haciendo un primer acercamiento a la base de datos, me di cuenta que habian muchos datos nulos. Es decir, muchos indicadores que no fueron respondidos por muchos paises o en muchos años. Entonces el primer paso que hice fue analizar en promedio cuales fueron los indicadores que tenían más respuestas a lo largo de los años, contando los países que habían respondido. 
+Haciendo un primer acercamiento a la base de datos, me di cuenta que habian muchos datos nulos. Es decir, muchos indicadores que no fueron respondidos por muchos paises o en muchos años. Entonces el primer paso que hice fue analizar en promedio cuales fueron los indicadores que tenían más respuestas a lo largo de los años, contando los países que habían respondido. Agrupar los datos por indicator_name y year para contar cuántas respuestas no nulas hay para cada combinación de indicador y año.
+COUNT(value): Cuenta cuántos valores no nulos existen para cada indicator_name en cada
 
 WITH yearly_responses AS (
   SELECT
@@ -32,4 +33,4 @@ FROM
     average_responses
 ORDER BY 
     avg_yearly_responses DESC
-LIMIT 200
+LIMIT 200;
