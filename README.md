@@ -2,6 +2,7 @@
 
 ## **Motivación** 
 Cada año, el Banco Mundial tiene dos programas de ayuda para los cuales tiene que elegir dos países beneificiarios. En 2024, estos programas se enfocaron en la desigualdad de genero. En particular, hay dos temas de relevancia en los cuales se quiere invertir: la participación de la mujer en el mercado laboral y la reducción de los embarazos adolescentes. 
+A lo largo del ultimo siglo, las condiciones de vida mundiales han mejorado globalmente. La expectativa de vida fue aumentando considerablemente, tanto para hombres como para mujeres. En esta misma tendencia, la población femenina fue ingresando al mercado laboral y los embarazos adolescentes fueron disminuyendo. Sin embargo, la evolución no fue equitativa para todos los países del mundo y hay grandes poblaciones de mujeres que sufren de limitado acceso a la educación sexual y de acceso al mercado laboral.
 
 ## **Plan de Metricas**
 
@@ -41,7 +42,7 @@ LIMIT 200;![image](https://github.com/user-attachments/assets/b68cc003-cf6a-4790
 
 Teniendo una lista amplia de "buenos" indicadores, elegí los que mas me interesaban, limitandome a indicadores que tuvieran un promedio anual de respuestas de 229 o más.
 Tome los indicadores que podrían serme utiles para hacer un estudio de genero, y arme mi Silver Layer.Tuve que traspolar mis registros de indicator_name como una nueva columna por indicador, usando MAX(CASE que elige el valor mas alto por cada registro en las combinaciones unicas de pais-año-indicador.
-Por otro lado, decidí hacer un inner join para incorporar la variable region de otra trabla worldbank-434116.BronzeLayer.country_summary. 
+Por otro lado, decidí hacer un inner join para incorporar la variable region de otra la tabla de la base worldbank-434116.BronzeLayer.country_summary. 
 
 SELECT
     h.country_name,
@@ -78,7 +79,7 @@ ORDER BY
 La tabla de resultados obtenida con la query anterior fue la que guarde como mi Silver Layer y conecte a Power BI. 
 
 En mi capa Gold, la tabla tuvo modificaciones que realice en PowerQuery. Cambie los nombres de los indicadores (es decir, de las columnas) al español.
-Elimine columnas: mortality ratio, ya que todos sus registros eran 1; basic_sanitation porque la información no era relevante para el estudio y fertility_rate porque no fue utilizada en este caso. 
+Elimine columnas: mortality ratio, ya que todos sus registros eran 1; basic_sanitation porque la información no era relevante para el estudio y fertility_rate porque no fue utilizada en este caso (y se generaba confusion con fertilidad adolescente). 
 Genere un ID de pais, y una tabla de dimension geografia que este conectado por ese ID y tuviera los campos de descripcion de pais y region.
 
 ![image](https://github.com/user-attachments/assets/c7c9e08e-dde2-4858-a2a5-99372ab76b93)
@@ -87,15 +88,24 @@ Genere un ID de pais, y una tabla de dimension geografia que este conectado por 
 ## **PowerBI  **
 
 Una vez, en el ambiente de PowerBI, mis visualizaciones se enforcaron en encontrar los dos paises que estaban más "necesitados" de ayuda financiera para combatir la alta fertilidad adolescente y la baja participación femenina en el mercado laboral. 
-A lo largo del ultimo siglo, las condiciones de vida mundiales han mejorado globalmente. La expectativa de vida fue aumentando considerablemente, tanto para hombres como para mujeres. En esta misma tendencia, la población femenina fue ingresando al mercado laboral y los embarazos adolescentes fueron disminuyendo. Sin embargo, la evolución no fue equitativa para todos los países del mundo y hay grandes poblaciones de mujeres que sufren de limitado acceso a la educación sexual y de acceso al mercado laboral.
 
-Primero, se analizo el promedio por región; eligiendo dos regiones diferentes en las cuales hacer "zoom", por cada problematica. Decido trabajar con los datos de los uñtimos años de la encuenta para tener los datos mas actualizados y también porque son los años donde hay más registros (respuestas por indicador).
+Primero, se analizo el promedio por región; eligiendo dos regiones diferentes en las cuales hacer "zoom", por cada problematica. En particular, Africa Sub Sahariana y Medio Oriente. Decido trabajar con los datos de los ultimos años 2010-2020 de la encuenta para tener los datos mas actualizados y también porque son los años donde hay más registros (respuestas por indicador).
 
 ## **Elección de beneficiario: PRIMER PROGRAMA**
-Para fertilidad adolescente, se analiza el caso de Africa Subsahariana. Se decide recortar los numeros de países en los cuales nos enfocaremos, siendo 150 el numero corte de nacimientos por cada 1000 mujeres, para poder analizar con más claridad. Se decide que sea 150 porque se ve una clara distancia entre los países con mas de 150 y los que tienen menos que 150. Dentro de los 6 países de la región con mayor alta fertilidad adolescente, se ha elegido a Angola como beneficiario del Programa "Un 2040 sin embarazos adolescentes: Inversión en la atención primaria a mujeres de 15-19 años y en la expansión de Educación sexual integral". Dado que el Programa de ayuda se apoya en el sistema de salud, se ha priorizado a Angola por su mayor gasto público en salud. En Angola al 2019, hay 145 nacimientos por cada 1.000 mujeres de entre 15-19 años. El programa de inversión proyecta disminuirlo a 120 para 2040.
+Para fertilidad adolescente, se analiza el caso de Africa Subsahariana. Se decide recortar los numeros de países en los cuales nos enfocaremos, siendo 150+ el numero corte de nacimientos por cada 1000 mujeres, para poder analizar con más claridad. Se decide que sea 150 porque se ve una clara distancia entre los países con mas de 150 y los que tienen menos que 150. 
+
+Para los países Subsaharianos con la mayor fertilidad adolescente entre 2010-2020, también se quiere evaluar el nivel de gastos en salud que hace el gobierno, ya que se ha estudiado que la atención primaria es la mayor fuente de ayuda para combatir la fertilidad adolescente.
+
+Dentro de los 6 países de la región con mayor alta fertilidad adolescente, se ha elegido a Angola como beneficiario del Programa "Un 2040 sin embarazos adolescentes: Inversión en la atención primaria a mujeres de 15-19 años y en la expansión de Educación sexual integral". Dado que el Programa de ayuda se apoya en el sistema de salud, se ha priorizado a Angola por su mayor gasto público en salud. En Angola al 2019, hay 145 nacimientos por cada 1.000 mujeres de entre 15-19 años. El programa de inversión proyecta disminuirlo a 120 para 2040.
 
 ## **Elección de beneficiario: SEGUNDO PROGRAMA** 
-Para analizar la participación femenina se elige el caso de Medio Oriente y Africa del Norte. Esta región, atravesada por la religión islamica, es la que cuenta con el menor porcentaje de mujeres que trabajan y ademas con el más alto indice de discriminación laboral, medida que he creado con el fin de analizar más a fondo la cuestión. Llamo Discriminación laboral a la medida de ratio entre desempleo femenino sobre desempleo masculino, donde los mayores valores de discriminación se dan por un alto desempleo femenino y un bajo desempleo masculino. Un país con Discriminación igual a 1 es un país donde no se discrimina por géneros. Los país con valores mayores a 1 son más discriminatorios hacia la mujer, cuanto mayor sea el numero.  Los países cuyo valor de discriminación es menor a 1, significaría discriminación hacia el hombre. Obviamente se entiende que hay una relación estrecha entre participación femenina en el mercado laboral y discriminación. Sin embargo, nuestra medida de discriminación, al incluir al desempleo tiene en consideración aquellos casos donde existe el deseo de trabajar pero no se consigue. Mientras que en el porcentaje de población activa femenina, no necesariamente hay una deseo de trabajar; sino que existe la posibilidad de salida voluntaria del mercado laboral.
+Para analizar la participación femenina se elige el caso de Medio Oriente y Africa del Norte. Esta región es la que cuenta con el menor porcentaje de mujeres que trabajan y ademas con el más alto indice de discriminación laboral, medida que creé con el fin de analizar más a fondo la cuestión. 
+
+Llamo Discriminación laboral a la medida de ratio entre desempleo femenino sobre desempleo masculino, donde los mayores valores de discriminación se dan por un alto desempleo femenino y un bajo desempleo masculino. Un país con Discriminación igual a 1 es un país donde no se discrimina por géneros. Los país con valores mayores a 1 son más discriminatorios hacia la mujer, cuanto mayor sea el numero.  Los países cuyo valor de discriminación es menor a 1, significaría discriminación hacia el hombre. Obviamente se entiende que hay una relación estrecha entre participación femenina en el mercado laboral y discriminación. Sin embargo, nuestra medida de discriminación, al incluir al desempleo tiene en consideración aquellos casos donde existe el deseo de trabajar pero no se consigue. Mientras que en el porcentaje de población activa femenina, no necesariamente hay una deseo de trabajar; sino que existe la posibilidad de salida voluntaria del mercado laboral.
+
+Se ha seleccionado a Qatar como beneficiario del Programa "El trabajo como fuente de empoderamiento: concientización y educación sobre la igualdad de derechos en el acceso al trabajo para mujeres". En Qatar en 2019, las mujeres tienen 6 veces más posibilidades de estar desempleado que los varones. Con la colaboración de escuelas y organizaciones locales, el programa buscará difundir y educar en la importancia de la obtención de trabajo y la propia manutención como fuente de empoderamiento femenino. Para 2040, se buscará reducir la discriminación a 5 ptos, esperando encontrar menores valores para aquellas mujeres jóvenes, que recientemente hayan entrado a la edad trabajadora.
+
+
 
 
 
