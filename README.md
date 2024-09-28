@@ -74,7 +74,7 @@ ORDER BY
     h.year;![image](https://github.com/user-attachments/assets/ffcb47cf-e3ab-4522-995b-8b0780c39461)
 
 
-## **Power Query **
+## **Power Query**
 
 La tabla de resultados obtenida con la query anterior fue la que guarde como mi Silver Layer y conecte a Power BI. 
 
@@ -85,7 +85,7 @@ Genere un ID de pais, y una tabla de dimension geografia que este conectado por 
 ![image](https://github.com/user-attachments/assets/c7c9e08e-dde2-4858-a2a5-99372ab76b93)
 
 
-## **PowerBI  **
+## **PowerBI**
 
 Una vez, en el ambiente de PowerBI, mis visualizaciones se enforcaron en encontrar los dos paises que estaban más "necesitados" de ayuda financiera para combatir la alta fertilidad adolescente y la baja participación femenina en el mercado laboral. 
 
