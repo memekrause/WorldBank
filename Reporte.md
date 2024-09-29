@@ -6,6 +6,9 @@ A lo largo del ultimo siglo, las condiciones de vida mundiales han mejorado glob
 
 ## **Plan de Metricas**
 
+![image](https://github.com/user-attachments/assets/9871dd8d-84cb-48ab-8d1f-c5b18a18ca40)
+
+
 ## **Base de datos: primer acercamiento** 
 Esta trabajo analiza la base de datos del Banco Mundial, bigquery-public-data.world_bank_health_population, que contiene muchos indicadores de todos los paises a lo largo de los años 1990-2019.
 
