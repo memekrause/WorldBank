@@ -82,10 +82,10 @@ ORDER BY
 La tabla de resultados obtenida con la query anterior fue la que guarde como mi Silver Layer y conecte a Power BI. 
 
 En mi capa Gold, la tabla tuvo modificaciones que realice en PowerQuery. Cambie los nombres de los indicadores (es decir, de las columnas) al español.
-Elimine columnas: mortality ratio, ya que todos sus registros eran 1; basic_sanitation porque la información no era relevante para el estudio y fertility_rate porque no fue utilizada en este caso (y se generaba confusion con fertilidad adolescente). 
+Elimine columnas: mortality ratio, ya que todos sus registros eran 1; basic_sanitation porque la información no era relevante para el estudio y fertility_rate, life_expectancy_total, life_expactancy_male porque no fueron utilizada en este caso. 
 Genere un ID de pais, y una tabla de dimension geografia que este conectado por ese ID y tuviera los campos de descripcion de pais y region.
 
-![image](https://github.com/user-attachments/assets/c7c9e08e-dde2-4858-a2a5-99372ab76b93)
+![image](https://github.com/user-attachments/assets/6ff65ca2-6db5-423d-b81d-5775160200a4)
 
 
 ## **PowerBI**
