@@ -12,42 +12,16 @@ A lo largo del ultimo siglo, las condiciones de vida mundiales han mejorado glob
 ## **Base de datos: primer acercamiento** 
 Esta trabajo analiza la base de datos del Banco Mundial, bigquery-public-data.world_bank_health_population, que contiene muchos indicadores de todos los paises a lo largo de los años 1990-2019.
 
-Haciendo un primer acercamiento a la base de datos, me di cuenta que habian muchos datos nulos. Es decir, muchos indicadores que no fueron respondidos por muchos paises o en muchos años. Entonces el primer paso que hice fue analizar en promedio cuales fueron los indicadores que tenían más respuestas a lo largo de los años, contando los países que habían respondido. Agrupe los datos por indicator_name y year para contar cuántas respuestas no nulas hay para cada combinación de indicador y año; y luego, conte cuántos valores no nulos existen para cada indicator_name en cada año. Despues, calcule el promedio de respuestas anuales (yearly_response) para cada indicador. 
+Haciendo un primer acercamiento a la base de datos, me di cuenta que habian muchos datos nulos. Es decir, muchos indicadores que no fueron respondidos por muchos paises o en muchos años. Entonces el primer paso que hice fue analizar en promedio cuales fueron los indicadores que tenían más respuestas a lo largo de los años (contando los países que habían respondido). Agrupe los datos por indicator_name y year para contar cuántas respuestas no nulas hay para cada combinación de indicador y año; y luego, conte cuántos valores no nulos existen para cada indicator_name en cada año. Despues, calcule el promedio de respuestas anuales (yearly_response) para cada indicador. 
 
-![image](https://github.com/user-attachments/assets/b68cc003-cf6a-4790-a63c-27fdb7e565f5)
+![image](https://github.com/user-attachments/assets/5615214b-c755-4aa9-8ebd-d80ddd1b2dc5)
+
 
 Teniendo una lista amplia de "buenos" indicadores, elegí los que mas me interesaban, limitandome a indicadores que tuvieran un promedio anual de respuestas de 229 o más.
 Tome los indicadores que podrían serme utiles para hacer un estudio de genero, y arme mi Silver Layer.Tuve que traspolar mis registros de indicator_name como una nueva columna por indicador, usando MAX(CASE que elige el valor mas alto por cada registro en las combinaciones unicas de pais-año-indicador.
 Por otro lado, decidí hacer un inner join para incorporar la variable region de otra la tabla de la base worldbank-434116.BronzeLayer.country_summary. 
 
-SELECT
-    h.country_name,
-    h.year,
-    MAX(CASE WHEN h.indicator_name = 'Unemployment, total (% of total labor force)' THEN h.value END) AS unemployment_total,
-    MAX(CASE WHEN h.indicator_name = 'Unemployment, female (% of female labor force)' THEN h.value END) AS unemployment_female,
-    MAX(CASE WHEN h.indicator_name = 'Unemployment, male (% of male labor force)' THEN h.value END) AS unemployment_male,
-    MAX(CASE WHEN h.indicator_name = 'Fertility rate, total (births per woman)' THEN h.value END) AS fertility_rate,
-    MAX(CASE WHEN h.indicator_name = 'People using at least basic sanitation services (% of population)' THEN h.value END) AS basic_sanitation_services,
-    MAX(CASE WHEN h.indicator_name = 'Domestic general government health expenditure (% of current health expenditure)' THEN h.value END) AS gov_health_expenditure,
-    MAX(CASE WHEN h.indicator_name = 'Adolescent fertility rate (births per 1,000 women ages 15-19)' THEN h.value END) AS adolescent_fertility_rate,
-    MAX(CASE WHEN h.indicator_name = 'Labor force, female (% of total labor force)' THEN h.value END) AS female_labor_force,
-    MAX(CASE WHEN h.indicator_name = 'Maternal mortality ratio (modeled estimate, per 100,000 live births)' THEN h.value END) AS maternal_mortality_ratio,
-    MAX(CASE WHEN h.indicator_name = 'Life expectancy at birth, total (years)' THEN h.value END) AS life_expectancy_total,
-    MAX(CASE WHEN h.indicator_name = 'Life expectancy at birth, male (years)' THEN h.value END) AS life_expectancy_male,
-    MAX(CASE WHEN h.indicator_name = 'Life expectancy at birth, female (years)' THEN h.value END) AS life_expectancy_female,
-    c.region
-FROM
-    worldbank-434116.BronzeLayer.health_nutrition_population h
-INNER JOIN
-    worldbank-434116.BronzeLayer.country_summary c ON h.country_code = c.country_code
-WHERE
-    h.indicator_name IN ('Unemployment, total (% of total labor force)','Unemployment, female (% of female labor force)', 'Unemployment, male (% of male labor force)', 'Fertility rate, total (births per woman)', 'People using at least basic sanitation services (% of population)', 'Domestic general government health expenditure (% of current health expenditure)', 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'Labor force, female (% of total labor force)', 'Maternal mortality ratio (modeled estimate, per 100,000 live births)','Life expectancy at birth, total (years)', 'Life expectancy at birth, male (years)', 'Life expectancy at birth, female (years)')
-    AND h.value IS NOT NULL
-    AND c.region IS NOT NULL
-GROUP BY
-    h.country_name, h.year, c.region
-ORDER BY
-    h.year;![image](https://github.com/user-attachments/assets/ffcb47cf-e3ab-4522-995b-8b0780c39461)
+![image](https://github.com/user-attachments/assets/ffcb47cf-e3ab-4522-995b-8b0780c39461)
 
 
 ## **Power Query**
@@ -82,6 +56,9 @@ Para analizar la participación femenina se elige el caso de Medio Oriente y Afr
 Llamo Discriminación laboral a la medida de ratio entre desempleo femenino sobre desempleo masculino, donde los mayores valores de discriminación se dan por un alto desempleo femenino y un bajo desempleo masculino. Un país con Discriminación igual a 1 es un país donde no se discrimina por géneros. Los país con valores mayores a 1 son más discriminatorios hacia la mujer, cuanto mayor sea el numero.  Los países cuyo valor de discriminación es menor a 1, significaría discriminación hacia el hombre. Obviamente se entiende que hay una relación estrecha entre participación femenina en el mercado laboral y discriminación. Sin embargo, nuestra medida de discriminación, al incluir al desempleo tiene en consideración aquellos casos donde existe el deseo de trabajar pero no se consigue. Mientras que en el porcentaje de población activa femenina, no necesariamente hay una deseo de trabajar; sino que existe la posibilidad de salida voluntaria del mercado laboral.
 
 Se ha seleccionado a Qatar como beneficiario del Programa "El trabajo como fuente de empoderamiento: concientización y educación sobre la igualdad de derechos en el acceso al trabajo para mujeres". En Qatar en 2019, las mujeres tienen 6 veces más posibilidades de estar desempleado que los varones. Con la colaboración de escuelas y organizaciones locales, el programa buscará difundir y educar en la importancia de la obtención de trabajo y la propia manutención como fuente de empoderamiento femenino. Para 2040, se buscará reducir la discriminación a 5 ptos, esperando encontrar menores valores para aquellas mujeres jóvenes, que recientemente hayan entrado a la edad trabajadora.
+
+
+
 
 
 
