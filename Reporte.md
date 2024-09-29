@@ -1,7 +1,7 @@
 # Programas de Ayuda - Banco Mundial
 
 ## **Motivación** 
-Cada año, el Banco Mundial tiene dos programas de ayuda para los cuales tiene que elegir dos países beneificiarios. En 2024, estos programas se enfocaron en la desigualdad de género. En particular, hay dos temas de relevancia en los cuales se quiere invertir: la participación de la mujer en el mercado laboral y la reducción de los embarazos adolescentes. 
+Cada año, el Banco Mundial tiene dos programas de ayuda para los cuales tiene que elegir dos países beneficiarios. En 2024, estos programas se enfocaron en la desigualdad de género. En particular, hay dos temas de relevancia en los cuales se quiere invertir: la participación de la mujer en el mercado laboral y la reducción de los embarazos adolescentes. 
 A lo largo del ultimo siglo, las condiciones de vida mundiales han mejorado globalmente. La expectativa de vida fue aumentando considerablemente, tanto para hombres como para mujeres. En esta misma tendencia, la población femenina fue ingresando al mercado laboral y los embarazos adolescentes fueron disminuyendo. Sin embargo, la evolución no fue equitativa para todos los países del mundo y hay grandes poblaciones de mujeres que sufren de limitado acceso a la educación sexual y de acceso al mercado laboral.
 
 ## **Plan de Metricas**
