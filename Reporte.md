@@ -34,7 +34,7 @@ Elimine columnas: mortality ratio, ya que todos sus registros eran 1; basic_sani
 Genere un ID de pais, y una tabla de dimension geografia que este conectado por ese ID y tuviera los campos de descripcion de pais y region.
 
 ![image](https://github.com/user-attachments/assets/479a976f-b375-4e32-b321-b2c820debb94)
-[LINK TEXT]()
+[LINK TEXT](https://dbdiagram.io/d/WorldBank-66f9d9303430cb846c00033f)
 
 
 ## **PowerBI**
