@@ -62,11 +62,69 @@ Se ha seleccionado a Qatar como beneficiario del Programa "El trabajo como fuent
 
 ## **Código SQL** 
 
-'''
-select * 
-from
+ELECCION DE VARIABLES
+```
+WITH yearly_responses AS (
+  SELECT
+      indicator_name,
+      year,
+      COUNT(value) as yearly_response
+  FROM
+      worldbank-434116.BronzeLayer.health_nutrition_population sd
+  WHERE value IS NOT NULL
+  GROUP BY
+      indicator_name, year
+),
+average_responses AS (
+  SELECT
+      indicator_name,
+      AVG(yearly_response) AS avg_yearly_responses
+  FROM
+      yearly_responses
+  GROUP BY
+      indicator_name
+)
+SELECT
+    indicator_name,
+    avg_yearly_responses
+FROM
+    average_responses
+ORDER BY 
+    avg_yearly_responses DESC
+LIMIT 200;
 
-'''
+```
 
+TRASPOLAR A COLUMNAS & INNER JOIN
+```
+SELECT
+    h.country_name,
+    h.year,
+    MAX(CASE WHEN h.indicator_name = 'Unemployment, total (% of total labor force)' THEN h.value END) AS unemployment_total,
+    MAX(CASE WHEN h.indicator_name = 'Unemployment, female (% of female labor force)' THEN h.value END) AS unemployment_female,
+    MAX(CASE WHEN h.indicator_name = 'Unemployment, male (% of male labor force)' THEN h.value END) AS unemployment_male,
+    MAX(CASE WHEN h.indicator_name = 'Fertility rate, total (births per woman)' THEN h.value END) AS fertility_rate,
+    MAX(CASE WHEN h.indicator_name = 'People using at least basic sanitation services (% of population)' THEN h.value END) AS basic_sanitation_services,
+    MAX(CASE WHEN h.indicator_name = 'Domestic general government health expenditure (% of current health expenditure)' THEN h.value END) AS gov_health_expenditure,
+    MAX(CASE WHEN h.indicator_name = 'Adolescent fertility rate (births per 1,000 women ages 15-19)' THEN h.value END) AS adolescent_fertility_rate,
+    MAX(CASE WHEN h.indicator_name = 'Labor force, female (% of total labor force)' THEN h.value END) AS female_labor_force,
+    MAX(CASE WHEN h.indicator_name = 'Maternal mortality ratio (modeled estimate, per 100,000 live births)' THEN h.value END) AS maternal_mortality_ratio,
+    MAX(CASE WHEN h.indicator_name = 'Life expectancy at birth, total (years)' THEN h.value END) AS life_expectancy_total,
+    MAX(CASE WHEN h.indicator_name = 'Life expectancy at birth, male (years)' THEN h.value END) AS life_expectancy_male,
+    MAX(CASE WHEN h.indicator_name = 'Life expectancy at birth, female (years)' THEN h.value END) AS life_expectancy_female,
+    c.region
+FROM
+    worldbank-434116.BronzeLayer.health_nutrition_population h
+INNER JOIN
+    worldbank-434116.BronzeLayer.country_summary c ON h.country_code = c.country_code
+WHERE
+    h.indicator_name IN ('Unemployment, total (% of total labor force)','Unemployment, female (% of female labor force)', 'Unemployment, male (% of male labor force)', 'Fertility rate, total (births per woman)', 'People using at least basic sanitation services (% of population)', 'Domestic general government health expenditure (% of current health expenditure)', 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'Labor force, female (% of total labor force)', 'Maternal mortality ratio (modeled estimate, per 100,000 live births)','Life expectancy at birth, total (years)', 'Life expectancy at birth, male (years)', 'Life expectancy at birth, female (years)')
+    AND h.value IS NOT NULL
+    AND c.region IS NOT NULL
+GROUP BY
+    h.country_name, h.year, c.region
+ORDER BY
+    h.year;
 
+```
 
