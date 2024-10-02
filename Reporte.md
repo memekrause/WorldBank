@@ -8,6 +8,7 @@ A lo largo del ultimo siglo, las condiciones de vida mundiales han mejorado glob
 
 ![image](https://github.com/user-attachments/assets/9871dd8d-84cb-48ab-8d1f-c5b18a18ca40)
 
+[LINK TEXT](https://docs.google.com/spreadsheets/d/1KKse8wZxhNrMu-JPZgr1lYuoET-QHiHb/edit?gid=750930123#gid=750930123)
 
 ## **Base de datos: primer acercamiento** 
 Esta trabajo analiza la base de datos del Banco Mundial, bigquery-public-data.world_bank_health_population, que contiene muchos indicadores de todos los paises a lo largo de los años 1990-2019.
@@ -15,7 +16,6 @@ Esta trabajo analiza la base de datos del Banco Mundial, bigquery-public-data.wo
 Haciendo un primer acercamiento a la base de datos, me di cuenta que habian muchos datos nulos. Es decir, muchos indicadores que no fueron respondidos por muchos paises o en muchos años. Entonces el primer paso que hice fue analizar en promedio cuales fueron los indicadores que tenían más respuestas a lo largo de los años (contando los países que habían respondido). Agrupe los datos por indicator_name y year para contar cuántas respuestas no nulas hay para cada combinación de indicador y año; y luego, conte cuántos valores no nulos existen para cada indicator_name en cada año. Despues, calcule el promedio de respuestas anuales (yearly_response) para cada indicador. 
 
 ![image](https://github.com/user-attachments/assets/5615214b-c755-4aa9-8ebd-d80ddd1b2dc5)
-
 
 Teniendo una lista amplia de "buenos" indicadores, elegí los que mas me interesaban, limitandome a indicadores que tuvieran un promedio anual de respuestas de 229 o más.
 Tome los indicadores que podrían serme utiles para hacer un estudio de genero, y arme mi Silver Layer.Tuve que traspolar mis registros de indicator_name como una nueva columna por indicador, usando MAX(CASE que elige el valor mas alto por cada registro en las combinaciones unicas de pais-año-indicador.
@@ -38,6 +38,8 @@ Genere un ID de pais, y una tabla de dimension geografia que este conectado por 
 
 
 ## **PowerBI**
+
+[LINK TEXT]
 
 Una vez, en el ambiente de PowerBI, mis visualizaciones se enforcaron en encontrar los dos paises que estaban más "necesitados" de ayuda financiera para combatir la alta fertilidad adolescente y la baja participación femenina en el mercado laboral. 
 
