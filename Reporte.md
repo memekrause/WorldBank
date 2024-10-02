@@ -34,12 +34,12 @@ Elimine columnas: mortality ratio, ya que todos sus registros eran 1; basic_sani
 Genere un ID de pais, y una tabla de dimension geografia que este conectado por ese ID y tuviera los campos de descripcion de pais y region.
 
 ![image](https://github.com/user-attachments/assets/479a976f-b375-4e32-b321-b2c820debb94)
-
+[LINK TEXT]()
 
 
 ## **PowerBI**
 
-[LINK TEXT]
+[LINK TEXT](https://app.powerbi.com/groups/me/reports/2ca79f20-1803-4c48-a5e0-982da3db7042/d501943250208d7e3955?experience=power-bi)
 
 Una vez, en el ambiente de PowerBI, mis visualizaciones se enforcaron en encontrar los dos paises que estaban más "necesitados" de ayuda financiera para combatir la alta fertilidad adolescente y la baja participación femenina en el mercado laboral. 
 
