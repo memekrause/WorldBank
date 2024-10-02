@@ -60,9 +60,13 @@ Llamo Discriminación laboral a la medida de ratio entre desempleo femenino sobr
 Se ha seleccionado a Qatar como beneficiario del Programa "El trabajo como fuente de empoderamiento: concientización y educación sobre la igualdad de derechos en el acceso al trabajo para mujeres". En Qatar en 2019, las mujeres tienen 6 veces más posibilidades de estar desempleado que los varones. Con la colaboración de escuelas y organizaciones locales, el programa buscará difundir y educar en la importancia de la obtención de trabajo y la propia manutención como fuente de empoderamiento femenino. Para 2040, se buscará reducir la discriminación a 5 ptos, esperando encontrar menores valores para aquellas mujeres jóvenes, que recientemente hayan entrado a la edad trabajadora.
 
 
+## **Código SQL** 
 
+'''
+select * 
+from
 
-
+'''
 
 
 
