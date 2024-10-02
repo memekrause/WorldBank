@@ -39,7 +39,7 @@ Genere un ID de pais, y una tabla de dimension geografia que este conectado por 
 
 ## **PowerBI**
 
-[Dashboard PowerBI](https://app.powerbi.com/groups/me/reports/2ca79f20-1803-4c48-a5e0-982da3db7042/d501943250208d7e3955?experience=power-bi)
+[Dashboard PowerBI](https://app.powerbi.com/view?r=eyJrIjoiMDlkMjEyYTktNjQyMy00YjViLThlMmUtYWI5OWFlNjdmZWM3IiwidCI6IjNhOTc2OTlhLTVlZjAtNDNiNi05MjI5LTA3YzJlNmE2YWU0MiIsImMiOjR9)
 
 Una vez, en el ambiente de PowerBI, mis visualizaciones se enforcaron en encontrar los dos paises que estaban más "necesitados" de ayuda financiera para combatir la alta fertilidad adolescente y la baja participación femenina en el mercado laboral. 
 
